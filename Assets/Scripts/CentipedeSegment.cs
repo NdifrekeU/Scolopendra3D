@@ -5,26 +5,34 @@ using UnityEngine;
 public class CentipedeSegment : MonoBehaviour, IDamageable
 {
     [SerializeField] private int health = 1;
+
+    /// <summary>
+    /// PUBLIC FIELDS
     public int Health => health;
     public float speed = 100;
     public CentipedeController controller;
+    /// </summary>
+
+
+    /// <summary>
+    /// PRIVATE FIELDS
     private Transform segmentInFront;
-    private void Awake()
-    {
-    }
+    private bool _canMove = true;
+    /// </summary>
+
+
 
 
     public void Init(CentipedeController controller, Transform seg1)
     {
         this.controller = controller;
         segmentInFront = seg1;
-
+        health = Random.Range(7, 15);
         DamageHUDController.AddHealthHUD(this);
         DamageHUDController.OnTakeDamage?.Invoke(this);
 
     }
 
-    private bool _canMove = true;
     public void SetMove(bool enabled)
     {
         _canMove = enabled;
@@ -60,8 +68,8 @@ public class CentipedeSegment : MonoBehaviour, IDamageable
 [CreateAssetMenu]
 public class CentipedeData : ScriptableObject
 {
-    public int health = 1;
+    public int healthMin = 7;
+    public int healthMax = 15;
     public int speed = 100;
     public float moveInterval = 0.5f;
-    public float stepSize = 1f;
 }

@@ -1,3 +1,5 @@
+using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,12 +7,15 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public Text scoreText;
-    public Text livesText;
+
+    [SerializeField] private GameObject tutInfo;
 
     void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        tutInfo.transform.DOScale(1.5f, 1).SetLoops(-1, LoopType.Yoyo);
     }
 
     public void UpdateScore(int score)
@@ -18,8 +23,13 @@ public class UIManager : MonoBehaviour
         scoreText.text = $"Score: {score}";
     }
 
-    public void UpdateLives(int lives)
+    private void Update()
     {
-        livesText.text = $"Lives: {lives}";
+        if (Input.GetMouseButtonDown(0))
+        {
+            tutInfo.SetActive(false);
+        }
     }
+
+
 }

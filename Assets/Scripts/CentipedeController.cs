@@ -121,6 +121,9 @@ public class CentipedeController : MonoBehaviour
 
     void SetMotion(bool set)
     {
+        //cannot move when player is in menu (eg. player is choosing powerup)
+        if (StateManager.Instance.gameState == GameState.InMenu && set) return;
+
         _head.GetComponent<PathFollower>().IsMove = set;
         segments.ForEach((s) => s.SetMove(set));
     }
