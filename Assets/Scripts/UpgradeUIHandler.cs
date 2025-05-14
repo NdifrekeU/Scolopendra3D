@@ -6,6 +6,7 @@ public class UpgradeUIHandler : MonoBehaviour
 {
     [SerializeField] private UpgradeUI upgradeUIsPrefab;
     [SerializeField] private Transform parent;
+    [SerializeField] private GameObject upgradePanel;
     [SerializeField] private UpgradeData[] upgradeDatas;
     private UpgradeUI[] upgradeUIs = new UpgradeUI[3];
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class UpgradeUIHandler : MonoBehaviour
         progress++;
         if (progress >= 2)
         {
+            upgradePanel.SetActive(true);
             GameEvents.DoShowUpgradeUI?.Invoke();
             progress = 0;
         }
@@ -40,6 +42,8 @@ public class UpgradeUIHandler : MonoBehaviour
 
     private void HideUpgradeUI()
     {
+        upgradePanel.SetActive(false);
+
         foreach (var child in upgradeUIs)
         {
             child.gameObject.SetActive(false);

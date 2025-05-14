@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
     public Text scoreText;
 
-    [SerializeField] private GameObject tutInfo;
+    [SerializeField] private GameObject tutInfo, homePan;
 
     void Awake()
     {
@@ -27,7 +27,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            tutInfo.SetActive(false);
+            homePan.SetActive(false);
         }
     }
 
