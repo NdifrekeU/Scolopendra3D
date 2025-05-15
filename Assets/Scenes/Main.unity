@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a98799f1504b9142bdc4bc0be19ac5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentPrefab: {fileID: 901015217121741101, guid: b29746de8c8802045ade4712c39ab16f,
+  segmentPrefab: {fileID: 5383804556700726836, guid: e81a61cffbd303540a7a83b1807b48c7,
     type: 3}
   headPrefab: {fileID: 8282206590793310007, guid: 4d45900983394ef47a0cbd04c7d67898,
     type: 3}

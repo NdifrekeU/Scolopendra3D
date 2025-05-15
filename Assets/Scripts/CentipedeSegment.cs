@@ -45,7 +45,18 @@ public class CentipedeSegment : MonoBehaviour, IDamageable
             segmentInFront = CentipedeController.instance.GetSegmentInFront(this);
 
         Vector3 targetPos = segmentInFront.position;
+        Vector3 moveDir = (targetPos - transform.position).normalized;
+
+        //move
         transform.position = Vector3.Lerp(transform.position, targetPos, speed * Time.deltaTime);
+
+
+        // Rotate to face the movement direction
+        if (moveDir != Vector3.zero) // Prevent rotation error when direction is zero
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 25 * Time.deltaTime);
+        }
     }
 
     private void Update()

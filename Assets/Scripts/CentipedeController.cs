@@ -140,6 +140,7 @@ public class CentipedeController : MonoBehaviour
         }
 
         //cannot move when player is in menu (eg. player is choosing powerup)
+
         yield return new WaitWhile(() => StateManager.Instance.gameState == GameState.InMenu);
         SetMotion(true);
     }
