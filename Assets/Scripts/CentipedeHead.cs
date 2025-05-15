@@ -18,8 +18,12 @@ public class CentipedeHead : MonoBehaviour
         PathFollower pathFollower = GetComponent<PathFollower>();
         pathFollower.Generator = pathGenerator;
         pathFollower.Speed = speed;
-
-        pathFollower.EndEvent.AddListener(() => SceneLoader.ReloadLevel());
+        pathFollower.IsEndEventEnable = true;
+        pathFollower.EndEvent.AddListener(() =>
+        {
+            print("reached end");
+            SceneLoader.ReloadLevel();
+        });
         GetComponent<Collider>().enabled = false;//cannot be destroyed, otherwise followers suffer
     }
 }
