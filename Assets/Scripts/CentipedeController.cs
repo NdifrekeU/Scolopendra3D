@@ -121,9 +121,6 @@ public class CentipedeController : MonoBehaviour
 
     void SetMotion(bool set)
     {
-        //cannot move when player is in menu (eg. player is choosing powerup)
-        if (StateManager.Instance.gameState == GameState.InMenu && set) return;
-
         _head.GetComponent<PathFollower>().IsMove = set;
         segments.ForEach((s) => s.SetMove(set));
     }
@@ -141,6 +138,9 @@ public class CentipedeController : MonoBehaviour
             if (i == 0)
                 _head.transform.position = tempPos;
         }
+
+        //cannot move when player is in menu (eg. player is choosing powerup)
+        yield return new WaitWhile(() => StateManager.Instance.gameState == GameState.InMenu);
         SetMotion(true);
     }
 

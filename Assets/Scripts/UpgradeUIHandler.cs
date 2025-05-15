@@ -14,19 +14,19 @@ public class UpgradeUIHandler : MonoBehaviour
     {
         GameEvents.DoShowUpgradeUI += ShowUpgradeUI;
         GameEvents.OnDestroyBodyPart += TrackPlayerProgress;
+        GameEvents.OnUpgrade += HideUpgradeUI;
     }
     int progress = 0;
     private void TrackPlayerProgress()
     {
         progress++;
-        if (progress >= 2)
+        if (progress >= 3)
         {
             upgradePanel.SetActive(true);
             GameEvents.DoShowUpgradeUI?.Invoke();
             progress = 0;
         }
 
-        GameEvents.OnUpgrade += HideUpgradeUI;
     }
 
     private void ShowUpgradeUI()
